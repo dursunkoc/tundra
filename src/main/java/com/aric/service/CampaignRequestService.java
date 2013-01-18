@@ -49,10 +49,16 @@ public class CampaignRequestService {
 	private void processARecord(Long id) {
 		CampaignRequest campaignRequest = campaignRequestDao
 				.findCampaignRequest(id);
+		HistoryType historyType;
 		if (CampaignRequestStatus.WAITING.equals(campaignRequest.getStatus())) {
 			campaignRequest.setStatus(CampaignRequestStatus.OPERATING);
+			historyType = HistoryType.REQUEST_PROCESSED;
 		} else {
 			campaignRequest.setStatus(CampaignRequestStatus.COMPLETED);
+			historyType = HistoryType.REQUEST_COMPLETED;
 		}
+		campaignRequest = campaignRequestDao.update(campaignRequest);
+		campaignHistoryDao.createHistory(historyType,
+				campaignRequest.getCampaignRequestId(), new Date());
 	}
 }

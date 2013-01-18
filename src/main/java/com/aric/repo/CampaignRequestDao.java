@@ -28,4 +28,10 @@ public interface CampaignRequestDao {
 	 * @return
 	 */
 	public CampaignRequest findCampaignRequest(Long campaignRequestId);
+
+	/**
+	 * @param campaignRequest
+	 * @return
+	 */
+	public CampaignRequest update(CampaignRequest campaignRequest);
 }

@@ -55,4 +55,10 @@ public class CampaignRequestDaoImpl implements CampaignRequestDao {
 				campaignRequest.get("campaignRequestId"), campaignRequestId));
 		return em.createQuery(query).getSingleResult();
 	}
+
+	@Override
+	public CampaignRequest update(CampaignRequest campaignRequest) {
+		CampaignRequest newRequest = em.merge(campaignRequest);
+		return newRequest;
+	}
 }
