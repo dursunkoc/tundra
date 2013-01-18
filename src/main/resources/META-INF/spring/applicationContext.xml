@@ -13,21 +13,14 @@
 
 	<context:component-scan base-package="com.aric.domain" />
 
-<<<<<<< HEAD
 	<context:component-scan base-package="com.aric.repo"/>
 	
 	<context:component-scan base-package="com.aric.service"/>
-=======
-	<context:component-scan base-package="com.aric.repo" />
-	
-	<context:component-scan base-package="com.aric.serice" />
 
 <!-- 	<akka:untyped-actor id="myActor"
 		implementation="com.aric.akka.CampaignRequestWorker" scope="singleton"
 		autostart="false">
 	</akka:untyped-actor> -->
->>>>>>> spring akka integration not finished yet
-
 	<tx:annotation-driven />
 
 </beans>
