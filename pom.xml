@@ -16,7 +16,6 @@
         <version.commons.logging>1.1.1</version.commons.logging>
         <!-- JBoss AS plugin for deployment -->
         <version.jboss.as.maven.plugin>7.1.1.Final</version.jboss.as.maven.plugin>
-        <version.akka></version.akka>
     </properties>
     <dependencyManagement>
         <dependencies>
