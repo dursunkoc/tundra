@@ -22,4 +22,10 @@ public interface CampaignRequestDao {
 	 */
 	public CampaignRequest createCampaignRequest(Campaign campaign,
 			Long customerId, Date trxDate);
+
+	/**
+	 * @param campaignRequestId
+	 * @return
+	 */
+	public CampaignRequest findCampaignRequest(Long campaignRequestId);
 }

@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -26,19 +27,19 @@ public class CampaignRequest {
 	@Id
 	@GeneratedValue
 	private Long campaignRequestId;
-	
+
 	@NotNull
 	@Enumerated(EnumType.ORDINAL)
 	@Column
 	private CampaignRequestStatus status;
-	
+
 	@NotNull
 	@Column
 	private Long customerId;
-	
-	@ManyToOne(optional=false)
+
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private Campaign campaign;
-	
+
 	public CampaignRequest() {
 	}
 
@@ -80,8 +81,5 @@ public class CampaignRequest {
 	public void setCampaign(Campaign campaign) {
 		this.campaign = campaign;
 	}
-	
-	
-	
 
 }

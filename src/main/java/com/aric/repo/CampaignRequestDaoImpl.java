@@ -6,6 +6,9 @@ package com.aric.repo;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aric.domain.Campaign;
 import com.aric.domain.CampaignRequest;
 import com.aric.domain.enums.CampaignRequestStatus;
-import com.aric.domain.enums.HistoryType;
 
 /**
  * @author dursun
@@ -27,9 +29,6 @@ public class CampaignRequestDaoImpl implements CampaignRequestDao {
 	@Autowired
 	private EntityManager em;
 
-	@Autowired
-	private CampaignHistoryDao campaignHistoryDao;
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -41,9 +40,19 @@ public class CampaignRequestDaoImpl implements CampaignRequestDao {
 		CampaignRequest campaignRequest = new CampaignRequest(campaign,
 				customerId, CampaignRequestStatus.WAITING);
 		this.em.persist(campaignRequest);
-		this.campaignHistoryDao.createHistory(HistoryType.REQUEST_CREATED,
-				campaignRequest.getCampaignRequestId(), trxDate);
 		return campaignRequest;
 	}
 
+	@Override
+	public CampaignRequest findCampaignRequest(Long campaignRequestId) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<CampaignRequest> query = criteriaBuilder
+				.createQuery(CampaignRequest.class);
+		Root<CampaignRequest> campaignRequest = query
+				.from(CampaignRequest.class);
+		query.select(campaignRequest);
+		query.where(criteriaBuilder.equal(
+				campaignRequest.get("campaignRequestId"), campaignRequestId));
+		return em.createQuery(query).getSingleResult();
+	}
 }
