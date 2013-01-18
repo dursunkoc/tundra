@@ -27,6 +27,14 @@ public class Campaign {
 	@Size(min = 3, max = 120)
 	private String campaignName;
 
+	public Campaign(Long campaignId, String campaignName) {
+		this.campaignId = campaignId;
+		this.campaignName = campaignName;
+	}
+
+	public Campaign() {
+	}
+
 	public Long getCampaignId() {
 		return campaignId;
 	}
