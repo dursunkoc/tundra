@@ -1,6 +1,6 @@
 package com.aric.mvc;
 
- import javax.validation.Valid;
+import javax.validation.Valid;
 
 import com.aric.domain.Member;
 import com.aric.repo.MemberDao;
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="/")
+@RequestMapping(value = "/")
 public class MemberController
 {
     @Autowired
     private MemberDao memberDao;
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String displaySortedMembers(Model model)
     {
         model.addAttribute("newMember", new Member());
@@ -27,14 +27,16 @@ public class MemberController
         return "index";
     }
 
-    @RequestMapping(method=RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String registerNewMember(@Valid @ModelAttribute("newMember") Member newMember, BindingResult result, Model model)
     {
-        if (!result.hasErrors()) {
+        if (!result.hasErrors())
+        {
             memberDao.register(newMember);
             return "redirect:/";
         }
-        else {
+        else
+        {
             model.addAttribute("members", memberDao.findAllOrderedByName());
             return "index";
         }

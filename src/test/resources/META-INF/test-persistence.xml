@@ -4,6 +4,9 @@
 	<persistence-unit name="testPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.aric.domain.Member</class>
+		<class>com.aric.domain.CampaignHistory</class>
+		<class>com.aric.domain.Campaign</class>
+		<class>com.aric.domain.CampaignRequest</class>
         <properties>
 	        <property name="hibernate.hbm2ddl.auto" value="create-drop" />
         	<property name="hibernate.show_sql" value="true" />

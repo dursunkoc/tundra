@@ -4,3 +4,8 @@ tundra.sublime-workspace
 tundra.sublime-project
 
 target/*
+.classpath
+
+.project
+
+.settings/*
