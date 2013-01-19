@@ -32,7 +32,6 @@ public class CampaignRequestWorker extends UntypedActor {
 			campaignRequestService.process(pw.getIdList());
 		} else if (message instanceof String) {
 			logger.info("Received message is: " + message);
-			System.out.println("Received message is: " + message);
 		} else {
 			unhandled(message);
 		}
