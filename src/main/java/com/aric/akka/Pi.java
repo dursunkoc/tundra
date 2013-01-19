@@ -14,6 +14,7 @@ class Pi {
 	public static void main(String[] args) {
 		Pi pi = new Pi();
 		pi.calculate(50, 10000, 10000);
+		pi.calculate(50, 10000, 10000);
 	}
 
 	public void calculate(final int nrOfWorkers, final int nrOfElements,
@@ -159,6 +160,9 @@ class Pi {
 	}
 
 	static class Worker extends UntypedActor {
+		public Worker() {
+			System.out.println("["+Thread.currentThread()+"]"+"CREATED."+System.currentTimeMillis());
+		}
 
 		@Override
 		public void onReceive(Object message) throws Exception {

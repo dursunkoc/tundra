@@ -14,26 +14,33 @@ import com.aric.service.CampaignRequestService;
  * @author dursun
  * 
  */
-public class CampaignRequestWorker extends UntypedActor {
+public class CampaignRequestProcessor extends UntypedActor {
 	private final static Logger logger = LoggerFactory
-			.getLogger(CampaignRequestWorker.class);
+			.getLogger(CampaignRequestFetcher.class);
 
 	private final CampaignRequestService campaignRequestService;
 
-	public CampaignRequestWorker(CampaignRequestService campaignRequestService) {
+	public CampaignRequestProcessor(
+			CampaignRequestService campaignRequestService) {
+		logger.info("Processor Created");
 		this.campaignRequestService = campaignRequestService;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see akka.actor.UntypedActor#onReceive(java.lang.Object)
+	 */
 	@Override
 	public void onReceive(Object message) throws Exception {
-		Thread.sleep(3000);
+		logger.info("Received a message: " + message);
 		if (message instanceof ProcessWork) {
 			ProcessWork pw = (ProcessWork) message;
 			campaignRequestService.process(pw.getIdList());
-		} else if (message instanceof String) {
-			logger.info("Received message is: " + message);
 		} else {
+			Thread.sleep(1000);
 			unhandled(message);
 		}
 	}
+
 }

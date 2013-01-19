@@ -24,6 +24,7 @@ public final class CampaignRequestActorFactory implements UntypedActorFactory {
 	private CampaignRequestService campaignRequestService;
 
 	public UntypedActor create() {
-		return new CampaignRequestWorker(campaignRequestService);
+		//TODO fixed parallel number is not a good solution
+		return new CampaignRequestFetcher(campaignRequestService, 10);
 	}
 }

@@ -4,6 +4,7 @@
 package com.aric.repo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.aric.domain.Campaign;
 import com.aric.domain.CampaignRequest;
@@ -34,4 +35,9 @@ public interface CampaignRequestDao {
 	 * @return
 	 */
 	public CampaignRequest update(CampaignRequest campaignRequest);
+
+	/**
+	 * @return
+	 */
+	public List<Long> getWaitingCampaignRequestIds();
 }

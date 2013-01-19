@@ -61,4 +61,9 @@ public class CampaignRequestService {
 		campaignHistoryDao.createHistory(historyType,
 				campaignRequest.getCampaignRequestId(), new Date());
 	}
+
+	public List<Long> fetchForProcess() {
+		List<Long> result = campaignRequestDao.getWaitingCampaignRequestIds();
+		return result;
+	}
 }
